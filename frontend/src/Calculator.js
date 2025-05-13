@@ -61,7 +61,8 @@ const Calculator = () => {
     const saved = localStorage.getItem("offerList");
     return saved ? JSON.parse(saved) : [];
   });
-    const [addedProductsId, setAddedProductsId] = useState([]);
+
+  const [addedProductsId, setAddedProductsId] = useState([]);
 
 
     const handleAddToList = (product) => {
@@ -73,33 +74,40 @@ const Calculator = () => {
             
             setAddedProductsId([...addedProductsId, product.id])
         }
-
-          // localStorage.setItem("offerList", JSON.stringify(productOnList))
-
         console.log(productOnList)
-
     }
 
-    useEffect(() => {
-      const saved = localStorage.getItem("offerList");
 
-      if (saved) {
-        setProductOnList(JSON.parse(saved));
+    useEffect(() => {
+
+      let savedList = [];
+      try {
+        
+        const saved = localStorage.getItem("offerList");
+  
+        if (saved) {
+          setProductOnList(JSON.parse(saved));
+        }
+
+        savedList = JSON.parse(localStorage.getItem("offerList"));
+  
+        const productIds = savedList.map(p => p.id);
+  
+        setAddedProductsId(productIds);
+      } catch (error) {
+        console.error("Failed to parse offerList from localStorage:", error);
+        savedList = [];
       }
 
-      const savedList = JSON.parse(localStorage.getItem("offerList"));
-
-      const productIds = savedList.map(p => p.id);
-
-      setAddedProductsId(productIds);
-
     }, []);
+
 
     useEffect(() => {
 
       localStorage.setItem("offerList", JSON.stringify(productOnList));
 
     }, [productOnList]);
+
 
     const handleClearList = () => {
 
@@ -113,6 +121,7 @@ const Calculator = () => {
         setAddedProductsId([])
       }
     }
+
 
     const handleRemoveItem = (id) => {
 
@@ -179,8 +188,6 @@ const Calculator = () => {
                     return (
                   <div key={product.id} className='product-card'>
                     <p>{product.productName}</p>
-                    {/* <p>{product.productDescription}</p> */}
-                    {/* <p>Çmimi: ${product.productPrice}</p> */}
                     <button className='add-to-cart' disabled={addedProductsId.includes(product.id)}  onClick={() => handleAddToList(product)}>Shto Ne Liste</button>
                   </div>
                     )})
@@ -201,15 +208,15 @@ const Calculator = () => {
                   {productOnList.map((product) => (
                     <tr key={product.id} className='table-body-row'> 
                       <td>{product.productName}</td>
-                      <td>${product.productPrice}</td>
+                      <td>{product.productPrice}€</td>
                       <td className='quantity'>
                         <button onClick={() => decreaseQuantity(product.id)}>-</button>
                         {product.quantity}
                         <button onClick={() => increaseQuantity(product.id)}>+</button>
                       </td>
-                      <td>${product.total}</td>
+                      <td>{product.total}€</td>
                       <td>
-                        <button onClick={() => handleRemoveItem(product.id)}>Largo</button>
+                        <button className='remove-item' onClick={() => handleRemoveItem(product.id)}>Largo</button>
                       </td>
                     </tr>
                   ))}
@@ -217,7 +224,7 @@ const Calculator = () => {
                 <tfoot>
                   <tr>
                     <td colSpan="3">Çmimi Gjithsej:</td>
-                    <td colSpan="2">{totalPrice()} $</td>
+                    <td colSpan="2">{totalPrice()}€</td>
                   </tr>
                 </tfoot>
               </table>

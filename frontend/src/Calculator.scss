@@ -4,7 +4,6 @@
 .calculator .app-header {
     background-color: #282c34;
     display: flex;
-    // flex-direction: column;
     gap: 20px;
     align-items: center;
     justify-content: center;
@@ -22,31 +21,22 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    // border: 2px solid red;
     gap: 20px;
     padding: 20px;
 
     .product-list{
-        // overflow: hidden;
         display: flex;
-        // flex-direction: column;
         align-items: center;
         justify-content: center;
-        // border: 2px solid green;
         border: 2px solid #c7c7c7;
         overflow-x: scroll;
         gap: 10px;
-        // width: 100%;
-        // width: 100%;
         max-width: 1200px;
         flex-wrap: wrap;
-        // margin: 0 auto;
 
         .product-card{
             display: flex;
             flex-direction: column;
-            // gap: 1px;
-            // border: 2px solid black;
 
             .add-to-cart{
                 background-color: #457649;
@@ -67,13 +57,13 @@
 }
 
 .calculator .buttons{
+
     display: flex;
-    // align-items: center;
     justify-content: center;
     gap: 50px;
     flex-wrap: wrap;
+
     .print, .delete{
-        // border: none;
         padding: 10px 20px;
         border: 1px solid #b1b1b1;
         background-color: transparent;
@@ -92,36 +82,72 @@
         cursor: pointer;
         font-size: 15px;
     }
-
 }
 
 .added-products{
-    // flex-direction: ;
     display: flex;
     gap: 60px;
-    // border: 2px solid blue;
-
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
+    overflow-x: auto;
+   
     .table{
-        .table-header .table-header-row th{
-            padding: 10px ;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        border-collapse: collapse;
+
+        th {
+            background-color: #457649;
+            color: #ffffff;
+            padding: 12px 10px;
+            text-align: center;
+            font-size: 15px;
         }
 
-        .table-body .table-body-row td{
-            padding: 10px ;
+        td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #ddd;
+            font-size: 15px;
         }
-        .table-body .table-body-row .quantity {
-            // background-color: #f2f2f2;
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
 
-            button{
+        .table-body {
+
+            .table-body-row .quantity button {
+                background-color: #eee;
                 border: none;
-                background-color: transparent;
-                font-size: 20px;
+                margin: 0 5px;
+                padding: 4px 10px;
+                font-size: 16px;
+                border-radius: 5px;
+                cursor: pointer;
+          
+                &:hover {
+                  background-color: #ddd;
+                }
             }
-            
+
+            .remove-item {
+                background-color: #9b0e0e;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 14px;
+
+        &:hover {
+            background-color: #b31a1a;
+        }
+            }
+        }
+        .table-body .table-body-row td{
+            padding: 5px ;
+            white-space: nowrap;
+        }
+
+        tfoot td {
+            background-color: #f1f1f1;
+            font-weight: bold;
         }
     }
 }
@@ -133,6 +159,7 @@
       }
       #print-area, #print-area * {
         visibility: visible;
+        color: black;
       }
       #print-area button{
         visibility: hidden;
