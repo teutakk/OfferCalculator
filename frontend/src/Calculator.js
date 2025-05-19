@@ -8,49 +8,109 @@ const Calculator = () => {
   const data = [
     {
       id:1,
-      productName: "Produkti 1",
+      productName: "DVR 2mp 4ch",
       productDescription: "This is a description of product 1",
       productPrice: 100
     },
     {
       id:2,
-      productName: "Produkti 2",
+      productName: "DVR 2mp 8ch",
       productDescription: "This is a description of product 2",
       productPrice: 15
     },
     {
       id:3,
-      productName: "Produkti 3",
+      productName: "DVR 5mp 5ch",
       productDescription: "This is a description of product 3",
       productPrice: 5
     },
     {
       id:4,
-      productName: "Produkti 4",
+      productName: "DVR 5mp 8ch",
       productDescription: "This is a description of product 4",
       productPrice: 10
     },
     {
       id: 5,
-      productName: "Produkti 5",
+      productName: "DVR 8mp 4ch",
       productDescription: "This is a description of product 5",
       productPrice: 20
     },
     {
       id: 6,
-      productName: "Produkti 6",
+      productName: "DVR 8mp 8ch",
       productDescription: "This is a description of product 5",
       productPrice: 25
     },
     {
       id: 7,
-      productName: "Produkti 7",
+      productName: "CAM 2mp",
       productDescription: "This is a description of product 5",
       productPrice: 12
     },
     {
       id: 8,
-      productName: "Produkti 8",
+      productName: "CAM 2mp fc",
+      productDescription: "This is a description of product 5",
+      productPrice: 20
+    },
+    {
+      id: 9,
+      productName: "CAM 5mp",
+      productDescription: "This is a description of product 5",
+      productPrice: 20
+    },
+    {
+      id: 10,
+      productName: "CAM 5mp fc",
+      productDescription: "This is a description of product 5",
+      productPrice: 20
+    },
+    {
+      id: 11,
+      productName: "CAM 8mp",
+      productDescription: "This is a description of product 5",
+      productPrice: 20
+    },
+    {
+      id: 12,
+      productName: "CAM 8mp fc",
+      productDescription: "This is a description of product 5",
+      productPrice: 20
+    },
+    {
+      id: 13,
+      productName: "Trafo",
+      productDescription: "This is a description of product 5",
+      productPrice: 20
+    },
+    {
+      id: 14,
+      productName: "Kabllo 100m",
+      productDescription: "This is a description of product 5",
+      productPrice: 20
+    },
+    {
+      id: 15,
+      productName: "BNC",
+      productDescription: "This is a description of product 5",
+      productPrice: 20
+    },
+    {
+      id: 16,
+      productName: "DC",
+      productDescription: "This is a description of product 5",
+      productPrice: 20
+    },
+    {
+      id: 17,
+      productName: "OG",
+      productDescription: "This is a description of product 5",
+      productPrice: 20
+    },
+    {
+      id: 18,
+      productName: "Router",
       productDescription: "This is a description of product 5",
       productPrice: 20
     },
@@ -63,7 +123,6 @@ const Calculator = () => {
   });
 
   const [addedProductsId, setAddedProductsId] = useState([]);
-
 
     const handleAddToList = (product) => {
 
@@ -81,8 +140,8 @@ const Calculator = () => {
     useEffect(() => {
 
       let savedList = [];
+      
       try {
-        
         const saved = localStorage.getItem("offerList");
   
         if (saved) {
@@ -121,7 +180,6 @@ const Calculator = () => {
         setAddedProductsId([])
       }
     }
-
 
     const handleRemoveItem = (id) => {
 
@@ -183,12 +241,16 @@ const Calculator = () => {
         </div>
             <div className='main'>
               <div className='product-list'>
-
+                {/* {data.filter((groupedProd) => groupedProd.id <= 6) ? <p>Grupi 1</p>  : <p></p>} */}
+                {/* {data.filter((groupedProd) => groupedProd.id > 6) ? <p>Grupi 2</p>  : <p></p>} */}
                 {data.map((product) =>{
-                    return (
-                  <div key={product.id} className='product-card'>
+                  return (
+                    <div key={product.id} className='product-card'>
+                    {/* {product.id && <h2 className='product-group'>Grupi 1</h2>} */}
                     <p>{product.productName}</p>
                     <button className='add-to-cart' disabled={addedProductsId.includes(product.id)}  onClick={() => handleAddToList(product)}>Shto Ne Liste</button>
+                    {(addedProductsId.includes(product.id)) && <button className='remove-item-list' onClick={() => handleRemoveItem(product.id)}>Largo</button>}
+
                   </div>
                     )})
                 } 
@@ -232,7 +294,7 @@ const Calculator = () => {
         </div>
         <div className='buttons'>
           <button className='print' onClick={() => window.print()}>Printo Ofertën</button>
-          <button className='delete' onClick={handleClearList}>Fshije Tabelen</button>
+          <button className='delete' disabled={productOnList.length === 0} onClick={handleClearList}>Fshije Tabelen</button>
         </div>
     </div>
   )
