@@ -296,6 +296,11 @@ const Calculator = () => {
           <button className='print' onClick={() => window.print()}>Printo Ofertën</button>
           <button className='delete' disabled={productOnList.length === 0} onClick={handleClearList}>Fshije Tabelen</button>
         </div>
+
+        <footer className='footer'>
+          <p>Copyright @{new Date().getFullYear()}</p>
+          <p>Designed by <span>TK</span></p>
+          </footer>
     </div>
   )
 }
