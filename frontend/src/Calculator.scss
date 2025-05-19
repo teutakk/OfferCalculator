@@ -49,7 +49,7 @@
                 cursor: pointer;
                 font-size: 15px;
                 border-radius: 25px;
-                
+                width: max(135px);
                 &:disabled{
                     background-color: #ccc;
                     cursor: not-allowed;
@@ -61,6 +61,8 @@
                 padding: 10px 20px;
                 border: none;
                 cursor: pointer;
+                width: max(135px);
+
                 font-size: 15px;
                 border-radius: 25px;
                 transition: all 0.3s ease;

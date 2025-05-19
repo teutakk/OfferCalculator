@@ -248,7 +248,7 @@ const Calculator = () => {
                     <div key={product.id} className='product-card'>
                     {/* {product.id && <h2 className='product-group'>Grupi 1</h2>} */}
                     <p>{product.productName}</p>
-                    <button className='add-to-cart' disabled={addedProductsId.includes(product.id)}  onClick={() => handleAddToList(product)}>Shto Ne Liste</button>
+                    {!(addedProductsId.includes(product.id)) && <button className='add-to-cart' disabled={addedProductsId.includes(product.id)}  onClick={() => handleAddToList(product)}>Shto Ne Liste</button>}
                     {(addedProductsId.includes(product.id)) && <button className='remove-item-list' onClick={() => handleRemoveItem(product.id)}>Largo</button>}
 
                   </div>
