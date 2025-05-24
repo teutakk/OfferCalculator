@@ -23,6 +23,11 @@
     gap: 20px;
     padding: 20px;
 
+    .input{
+        padding: 3px 5px;
+        border: 1px solid gray;
+        border-radius: 20px;
+    }
     .product-list{
         display: flex;
         align-items: center;
@@ -149,6 +154,10 @@
                 &:hover {
                   background-color: #ddd;
                 }
+            }
+
+            .product-column{
+                text-align: left;
             }
 
             .remove-item {

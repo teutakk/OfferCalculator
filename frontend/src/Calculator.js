@@ -10,109 +10,115 @@ const Calculator = () => {
       id:1,
       productName: "DVR 2mp 4ch",
       productDescription: "This is a description of product 1",
-      productPrice: 100
+      productPrice: 55
     },
     {
       id:2,
       productName: "DVR 2mp 8ch",
       productDescription: "This is a description of product 2",
-      productPrice: 15
+      productPrice: 70
     },
     {
       id:3,
-      productName: "DVR 5mp 5ch",
+      productName: "DVR 5MP 4ch",
       productDescription: "This is a description of product 3",
-      productPrice: 5
+      productPrice: 75
     },
     {
       id:4,
       productName: "DVR 5mp 8ch",
       productDescription: "This is a description of product 4",
-      productPrice: 10
+      productPrice: 95
     },
     {
       id: 5,
       productName: "DVR 8mp 4ch",
       productDescription: "This is a description of product 5",
-      productPrice: 20
+      productPrice: 100
     },
     {
       id: 6,
       productName: "DVR 8mp 8ch",
       productDescription: "This is a description of product 5",
-      productPrice: 25
+      productPrice: 150
     },
     {
       id: 7,
       productName: "CAM 2mp",
       productDescription: "This is a description of product 5",
-      productPrice: 12
+      productPrice: 33
     },
     {
       id: 8,
-      productName: "CAM 2mp fc",
+      productName: "CAM 2mp COLOR",
       productDescription: "This is a description of product 5",
-      productPrice: 20
+      productPrice: 40
     },
     {
       id: 9,
       productName: "CAM 5mp",
       productDescription: "This is a description of product 5",
-      productPrice: 20
+      productPrice: 40
     },
     {
       id: 10,
-      productName: "CAM 5mp fc",
+      productName: "CAM 5mp Color",
       productDescription: "This is a description of product 5",
-      productPrice: 20
+      productPrice: 46
     },
     {
       id: 11,
       productName: "CAM 8mp",
       productDescription: "This is a description of product 5",
-      productPrice: 20
+      productPrice: 57
     },
     {
       id: 12,
-      productName: "CAM 8mp fc",
+      productName: "CAM 8mp Color",
       productDescription: "This is a description of product 5",
-      productPrice: 20
+      productPrice: 70
     },
     {
       id: 13,
-      productName: "Trafo",
+      productName: "CAM 8mp Color Alarm",
       productDescription: "This is a description of product 5",
-      productPrice: 20
+      productPrice: 150
     },
     {
       id: 14,
-      productName: "Kabllo 100m",
+      productName: "Trafo",
       productDescription: "This is a description of product 5",
-      productPrice: 20
+      productPrice: 15
     },
     {
       id: 15,
-      productName: "BNC",
+      productName: "Kabllo 100m",
       productDescription: "This is a description of product 5",
-      productPrice: 20
+      productPrice: 45
     },
     {
       id: 16,
-      productName: "DC",
+      productName: "BNC",
       productDescription: "This is a description of product 5",
-      productPrice: 20
+      productPrice: 1
     },
     {
       id: 17,
-      productName: "OG",
+      productName: "DC",
       productDescription: "This is a description of product 5",
-      productPrice: 20
+      productPrice: 1
     },
     {
       id: 18,
-      productName: "Router",
+      productName: "OG",
       productDescription: "This is a description of product 5",
-      productPrice: 20
+      productPrice: 1
+    },
+    {
+      id: 19,
+      productName: "HDD 1TB REFORB",
+      productDescription: "This is a description of product 5",
+      productPrice: 50
     },
     
   ]
@@ -123,6 +129,7 @@ const Calculator = () => {
   });
 
   const [addedProductsId, setAddedProductsId] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
     const handleAddToList = (product) => {
 
@@ -233,6 +240,9 @@ const Calculator = () => {
       return sum;
     }
 
+
+    
+
   return (
     <div className='calculator'>
         <div className='app-header'>
@@ -240,14 +250,17 @@ const Calculator = () => {
             <img src={logo} alt="logo" className='logo'/>
         </div>
             <div className='main'>
+              <label>Kërko Produktin:</label>
+            <input className='input' type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
               <div className='product-list'>
-                {/* {data.filter((groupedProd) => groupedProd.id <= 6) ? <p>Grupi 1</p>  : <p></p>} */}
-                {/* {data.filter((groupedProd) => groupedProd.id > 6) ? <p>Grupi 2</p>  : <p></p>} */}
-                {data.map((product) =>{
+                {data.filter((product) => {
+                  return product.productName.toLowerCase().includes(searchQuery.toLowerCase());
+                }).map((product) =>{
                   return (
                     <div key={product.id} className='product-card'>
-                    {/* {product.id && <h2 className='product-group'>Grupi 1</h2>} */}
+                      
                     <p>{product.productName}</p>
+                    {/* <p>{product.productPrice}</p> */}
                     {!(addedProductsId.includes(product.id)) && <button className='add-to-cart' disabled={addedProductsId.includes(product.id)}  onClick={() => handleAddToList(product)}>Shto Ne Liste</button>}
                     {(addedProductsId.includes(product.id)) && <button className='remove-item-list' onClick={() => handleRemoveItem(product.id)}>Largo</button>}
 
@@ -269,7 +282,7 @@ const Calculator = () => {
                   <tbody className='table-body'>
                   {productOnList.map((product) => (
                     <tr key={product.id} className='table-body-row'> 
-                      <td>{product.productName}</td>
+                      <td className='product-column'>{product.productName}</td>
                       <td>{product.productPrice}€</td>
                       <td className='quantity'>
                         <button onClick={() => decreaseQuantity(product.id)}>-</button>
