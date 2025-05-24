@@ -8,7 +8,7 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
-
+    padding: 5px;
     img{
         width: 100px;
         height: 100px;
@@ -20,13 +20,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 18px;
     padding: 20px;
 
     .input{
-        padding: 3px 5px;
+        padding: 8px;
         border: 1px solid gray;
         border-radius: 20px;
+        font-size: 15px;
     }
     .product-list{
         display: flex;
@@ -44,7 +45,11 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-
+            
+            p{
+                font-size: 15px;
+                font-weight: 500;
+            }
             .add-to-cart{
                 background-color: #457649;
                 color: white;

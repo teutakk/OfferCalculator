@@ -251,7 +251,7 @@ const Calculator = () => {
         </div>
             <div className='main'>
               <label>Kërko Produktin:</label>
-            <input className='input' type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+              <input className='input' type="text" placeholder="Kërko..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
               <div className='product-list'>
                 {data.filter((product) => {
                   return product.productName.toLowerCase().includes(searchQuery.toLowerCase());
